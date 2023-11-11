@@ -35,11 +35,7 @@ const Pokemon = () => {
 
   return (
     <div className="pokemon-grid">
-      {rows.map((row, rowIndex) => (
-        <div className="row" key={rowIndex}>
-          {row.map((url, index) => <PokemonCard key={index} url={url} />)}
-        </div>
-      ))}
+      {pokemonUrls.map((url, index) => <PokemonCard key={index} url={url} />)}
     </div>
   );
 }

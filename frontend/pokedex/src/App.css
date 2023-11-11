@@ -70,8 +70,9 @@
 
 .pokemon-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: auto auto auto auto auto;
   gap: 10px;
+  padding: 10px;
 }
 
 .type-icon {
@@ -94,7 +95,11 @@
 }
 
 @media print {
-  .row:nth-child(5n) {
-    break-after: page;
+  .pokemon-grid .row:nth-child(5n) {
+    page-break-after: always;
+  }
+  .card {
+    margin: 0.25em; /* Adjust as needed */
+    padding: 0.25em; /* Adjust as needed */
   }
 }

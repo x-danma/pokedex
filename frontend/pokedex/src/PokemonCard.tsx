@@ -27,7 +27,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ url }) => {
         <div className="card">
             {pokemon ? (
                 <>
-                    <h2> {pokemon.number}. {pokemon.name.toUpperCase()}</h2>
+                    <h3> {pokemon.number}. {pokemon.name.toUpperCase()}</h3>
                     <img src={pokemon.image} alt={pokemon.name} />
                     <div className="type-icons">
                         {pokemon.type.map((type, index) => (

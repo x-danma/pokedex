@@ -12,27 +12,34 @@ const P = new Pokedex(options);
 
 const Pokemon = () => {
   const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
-  const [nextUrl, setNextUrl] = useState<string>('');
 
   const fetchPokemon = (url: string) => {
     P.resource(url)
       .then((response: { results: { url: string; }[]; next: string; }) => {
         const urls = response.results.map((pokemon: { url: string }) => pokemon.url);
         setPokemonUrls(prevUrls => [...prevUrls, ...urls]);
-        setNextUrl(response.next);
       });
   };
 
   useEffect(() => {
-    fetchPokemon('/api/v2/pokemon?limit=5');
+    fetchPokemon('/api/v2/pokemon?limit=151');
   }, []);
 
   if (pokemonUrls.length === 0) return <div>Loading...</div>;
 
+  // Split the pokemonUrls array into chunks of 5
+  const rows = [];
+  for (let i = 0; i < pokemonUrls.length; i += 5) {
+    rows.push(pokemonUrls.slice(i, i + 5));
+  }
+
   return (
     <div className="pokemon-grid">
-      {pokemonUrls.map((url, index) => <PokemonCard key={index} url={url} />)}
-      <button onClick={() => fetchPokemon(nextUrl)}>Load More</button>
+      {rows.map((row, rowIndex) => (
+        <div className="row" key={rowIndex}>
+          {row.map((url, index) => <PokemonCard key={index} url={url} />)}
+        </div>
+      ))}
     </div>
   );
 }

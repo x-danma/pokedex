@@ -42,17 +42,29 @@
 }
 
 .card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  /* Other styles... */
+  height: 180px; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #000; /* Thin border */
+  border-radius: 10px; /* Rounded edges */
+  /* // 1px top margin to separate cards */
+  margin-top: 12px;
+}
+
+.card h2, .card p {
+  margin: 0.5em 0;
+  padding: 0;
+  text-align: center;
 }
 
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  gap: 10px;
 }
 
 .spinner {
@@ -67,4 +79,10 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media print {
+  .row:nth-child(5n) {
+    break-after: page;
+  }
 }

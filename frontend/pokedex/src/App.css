@@ -53,18 +53,30 @@
   border-radius: 10px; /* Rounded edges */
   /* // 1px top margin to separate cards */
   margin-top: 12px;
+  padding: 1em; /* Half the previous padding */
 }
 
 .card h2, .card p {
-  margin: 0.5em 0;
+  margin: .25em 0;
   padding: 0;
   text-align: center;
+}
+
+.card .type-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+}
+
+.type-icon {
+  width: 50%;
+  height: auto;
 }
 
 .spinner {

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { Pokedex } from 'pokeapi-js-wrapper';
 import Grid from '@material-ui/core/Grid';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+
 const options = {
   protocol: 'https',
   versionPath: '/api/v2/',
@@ -42,7 +41,6 @@ const PokemonSubset: React.FC<PokemonSubsetProps> = ({ pokemonNumbers }) => {
 
   return (
     <>
-      <button onClick={generatePDF}>Generate PDF</button>
       <div className="pokemon-grid">
         {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (
           <div className={chunkIndex % 5 === 4 ? "page-break" : ""} key={chunkIndex}>

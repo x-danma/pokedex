@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { Pokedex } from 'pokeapi-js-wrapper';
-
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { useRef } from 'react';
 const options = {
   protocol: 'https',
   versionPath: '/api/v2/',
@@ -33,11 +35,28 @@ const Pokemon = () => {
     rows.push(pokemonUrls.slice(i, i + 5));
   }
 
+  const input = useRef<HTMLDivElement>(null);
+  const generatePDF = () => {
+
+    html2canvas(input.current as HTMLElement)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+        pdf.save("download.pdf");
+        pdf.save("download.pdf");
+      });
+  };
+
   return (
-    <div className="pokemon-grid">
-      {pokemonUrls.map((url, index) => <PokemonCard key={index} url={url} />)}
-    </div>
+    <>
+      <button onClick={generatePDF}>Generate PDF</button>
+      <div className="pokemon-grid" ref={input}>
+        {pokemonUrls.map((url, index) => <PokemonCard key={index} url={url} />)}
+      </div>
+    </>
   );
+
 }
 
 export default Pokemon;

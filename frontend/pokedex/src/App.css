@@ -95,11 +95,7 @@
 }
 
 @media print {
-  .pokemon-grid .row:nth-child(5n) {
-    page-break-after: always;
-  }
-  .card {
-    margin: 0.25em; /* Adjust as needed */
-    padding: 0.25em; /* Adjust as needed */
+  .row:nth-child(n+6) {
+    display: none;
   }
 }

@@ -1,14 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
+import { Pokedex } from 'pokeapi-js-wrapper';
+
+const options = {
+  protocol: 'https',
+  versionPath: '/api/v2/',
+  cache: true,
+  timeout: 5 * 1000 // 5s
+}
+const P = new Pokedex(options);
 
 const Pokemon = () => {
   const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=12')
-      .then((response) => response.json())
-      .then((data) => {
-        const urls = data.results.map((pokemon: { url: string }) => pokemon.url);
+    P.getPokemonsList({limit: 15})
+      .then((response: { results: { url: string; }[]; }) => {
+        const urls = response.results.map((pokemon: { url: string }) => pokemon.url);
         setPokemonUrls(urls);
       });
   }, []);

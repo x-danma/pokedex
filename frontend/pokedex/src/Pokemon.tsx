@@ -22,7 +22,7 @@ const Pokemon = () => {
   };
 
   useEffect(() => {
-    fetchPokemon('/api/v2/pokemon?limit=151');
+    fetchPokemon('/api/v2/pokemon?limit=1010');
   }, []);
 
   if (pokemonUrls.length === 0) return <div>Loading...</div>;
@@ -35,20 +35,18 @@ const Pokemon = () => {
     return chunks;
   };
 
-  // foreach chunk in chunkArray, reorder the array so that the first element is in the middle
-
+  const transposeArray = (array: string[][]) => {
+    return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+  };
   
 
   return (
     <>
       <div className='pokemon-grid'>
-
-        {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (
+        {transposeArray(chunkArray(pokemonUrls, 5)).map((chunk, chunkIndex) => (
           <div className="row" key={chunkIndex}>
-            Test
             {chunk.map((url, index) => (
               <>
-                {index}
                 <PokemonCard url={url} key={index} />
               </>
             ))}

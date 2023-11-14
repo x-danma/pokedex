@@ -1,4 +1,5 @@
 # Pokedex
+
 Web Pokedex for printing to paper (for my kids, jk, for me)
 
 ## High-Level Description
@@ -21,24 +22,28 @@ You need to have the following software installed on your machine:
 Follow these steps to get a development environment running:
 
 1. Clone the repository:
-    ```
+
+```bash
     git clone [repository_url]
-    ```
+```
 
-2. Navigate to the project directory:
-    ```
+1. Navigate to the project directory:
+
+```bash
     cd pokedex
-    ```
+```
 
-3. Install the dependencies:
-    ```
+1. Install the dependencies:
+
+```bash
     npm install
-    ```
+```
 
-4. Start the application:
-    ```
+1. Start the application:
+
+```bash
     npm run dev
-    ```
+```
 
 ## Running the Tests
 

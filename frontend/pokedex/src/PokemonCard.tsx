@@ -3,11 +3,20 @@ import { getTypeIcon } from './getTypeIcon';
 
 type PokemonCardProps = {
     url: string;
+    isShiny: boolean;
 };
 
-const PokemonCard: React.FC<PokemonCardProps> = ({ url }) => {
-    const [pokemon, setPokemon] = useState<{ number: number; name: string; image: string; shinyImage: string; type: string[] } | null>(null);
-    const [isShiny, setIsShiny] = useState(true);
+type Pokemon = {
+  number: number;
+  name: string;
+  image: string;
+  shinyImage: string;
+  type: string[];
+};
+
+const PokemonCard: React.FC<PokemonCardProps> = ({ url, isShiny }) => {
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  const [shiny, setShiny] = useState<boolean>(isShiny);
 
     useEffect(() => {
 
@@ -25,8 +34,12 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ url }) => {
 
     }, [url]);
 
+    useEffect(() => {
+      setShiny(isShiny);
+    }, [isShiny]);
+
     const toggleShiny = () => {
-        setIsShiny(!isShiny);
+      setShiny(!shiny);
     };
 
     return (
@@ -36,7 +49,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ url }) => {
               <b>{pokemon.name.toUpperCase()}</b>
               <button className="toggle-button" onClick={toggleShiny}>Toggle Shiny</button>
               <a href={`https://www.pokemon.com/us/pokedex/${pokemon.name}`} target="_blank" rel="noopener noreferrer">
-                <img src={isShiny ? pokemon.shinyImage : pokemon.image} alt={pokemon.name} />
+                <img src={shiny ? pokemon.shinyImage : pokemon.image} alt={pokemon.name} />
               </a>
               <div className="type-icons">
                 {pokemon.type.map((type, index) => (

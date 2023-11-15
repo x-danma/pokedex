@@ -12,6 +12,7 @@ const P = new Pokedex(options);
 
 const Pokemon = () => {
   const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
+  const [isAllShiny, setIsAllShiny] = useState(false);
 
   const fetchPokemon = (url: string) => {
     P.resource(url)
@@ -38,16 +39,17 @@ const Pokemon = () => {
   const transposeArray = (array: string[][]) => {
     return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
   };
-  
+
 
   return (
     <>
+      <button onClick={() => setIsAllShiny(!isAllShiny)}>Toggle All Shiny</button>
       <div className='pokemon-grid'>
         {transposeArray(chunkArray(pokemonUrls, 5)).map((chunk, chunkIndex) => (
           <div className="row" key={chunkIndex}>
             {chunk.map((url, index) => (
               <>
-                <PokemonCard url={url} key={index} />
+                <PokemonCard url={url} isShiny={isAllShiny} key={index} />
               </>
             ))}
           </div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { Pokedex } from 'pokeapi-js-wrapper';
-import Grid from '@material-ui/core/Grid';
+import Button from '@mui/material/Button';
+
 const options = {
   protocol: 'https',
   versionPath: '/api/v2/',
@@ -49,6 +50,9 @@ const Pokemon = () => {
   return (
     <>
       <div style={{ display: 'flex', position: 'fixed', top: 0, background: '#fff', padding: '10px', zIndex: 100 }}>
+        // mui button that does nothing
+        <Button>Button</Button>
+        
         <button style={{ marginRight: '20px' }} onClick={toggleShowFirstFive}>
           {showOnlyFirstFive ? 'Show All' : 'Show Only First Five'}
         </button>

@@ -73,7 +73,29 @@ button:focus-visible {
     top: 0;
   }
 
+  .printable td {
+    max-height: 33.33vh; /* Set a maximum height for the table cells */
+    overflow: hidden; /* Hide any content that exceeds the maximum height */
+  }
+
   @page {
     size: landscape;
   }
+}
+
+@media print {
+  .pokemon-card {
+    margin: 0; /* Remove margins */
+    padding: 0; /* Remove padding */
+  }
+}
+
+.pokemon-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tr, td {
+  border: none !important;
 }

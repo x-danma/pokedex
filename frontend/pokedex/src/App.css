@@ -52,6 +52,10 @@
   padding: 1em; /* Half the previous padding */
 }
 
+.card {
+  padding: 5px 10px; /* 5px top and bottom padding, 10px left and right padding */
+}
+
 .card b, .card p {
   margin: .25em 0;
   padding: 0;

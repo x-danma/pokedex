@@ -59,7 +59,7 @@ button:focus-visible {
     visibility: hidden;
   }
 
-  .printable tr:nth-child(5n) {
+  .printable tr:nth-child(3n) {
     page-break-after: always;
   }
 

@@ -3,6 +3,7 @@ import './App.css';
 // import Pokemon from './Pokemon';
 import PokemonList from './PokemonList';
 import { Tabs, Tab, Box } from '@mui/material';
+import Pokemon from './Pokemon';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -35,13 +36,13 @@ function App() {
     <Box sx={{ width: '95%', height: '95vh' }}>
       <Tabs value={value} onChange={handleChange} >
         <Tab label="Pokemon List" />
-        <Tab label="Pokemon" />
+        <Tab label="Pokemon Boxes" />
       </Tabs>
       <TabPanel value={value} index={0}>
         <PokemonList />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {/* <Pokemon /> */}
+        <Pokemon />
       </TabPanel>
     </Box>
   );

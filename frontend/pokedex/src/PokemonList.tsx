@@ -23,7 +23,7 @@ function PokemonList() {
           {chunkArray(pokemon, 5).map((chunk, chunkIndex) => (
             <TableRow key={chunkIndex}>
               {chunk.map((poke: Pokemon) => (
-                <TableCell key={poke.name}>
+                <TableCell key={poke.name} style={{ width: '20%' }}>
                   <PokemonCard url={poke.url} isShiny={false} /> {/* Render the PokemonCard component */}
                 </TableCell>
               ))}

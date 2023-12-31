@@ -11,7 +11,7 @@ function PokemonList() {
   const { pokemonUrls } = usePokemon();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className="printable">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableBody>
           {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (

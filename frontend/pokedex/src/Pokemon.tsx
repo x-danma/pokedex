@@ -42,7 +42,7 @@ const Pokemon = () => {
     return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
   };
 
-  const toggleShowFirstFive = () => { // New function to handle button click
+  const toggleShowFirstFive = () => {
     setShowOnlyFirstFive(!showOnlyFirstFive);
   };
   const displayedPokemonUrls = showOnlyFirstFive ? pokemonUrls.slice(0, 5) : pokemonUrls; // Display only first 5 if showOnlyFirstFive is true

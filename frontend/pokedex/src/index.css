@@ -83,18 +83,6 @@ button:focus-visible {
   }
 }
 
-@media print {
-  .pokemon-card {
-    margin: 0; /* Remove margins */
-    padding: 0; /* Remove padding */
-  }
-}
-
-.pokemon-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 tr, td {
   border: none !important;

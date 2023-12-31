@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTypeIcon } from './getTypeIcon';
-
+import './pokemon-card.css';
 type PokemonCardProps = {
     url: string;
     isShiny: boolean;

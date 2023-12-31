@@ -46,7 +46,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({ url, isShiny }) => {
         <div className="card">
           {pokemon ? (
             <>
-              <b>{pokemon.name.toUpperCase()}</b>
+              <b>{pokemon.number}. {pokemon.name.toUpperCase()}</b>
               <button className="toggle-button" onClick={toggleShiny}>Toggle Shiny</button>
               <a href={`https://www.pokemon.com/us/pokedex/${pokemon.name}`} target="_blank" rel="noopener noreferrer">
                 <img src={shiny ? pokemon.shinyImage : pokemon.image} alt={pokemon.name} />

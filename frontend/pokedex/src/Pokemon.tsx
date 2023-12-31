@@ -49,10 +49,7 @@ const Pokemon = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', top: 0, background: '#fff', padding: '10px', zIndex: 100 }}>
-        // mui button that does nothing
-        <Button>Button</Button>
-        
+      <div style={{ display: 'flex', top: 0, background: '#fff', padding: '10px', zIndex: 100 }}>       
         <button style={{ marginRight: '20px' }} onClick={toggleShowFirstFive}>
           {showOnlyFirstFive ? 'Show All' : 'Show Only First Five'}
         </button>

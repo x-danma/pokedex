@@ -4,6 +4,7 @@ import './App.css';
 import PokemonList from './PokemonList';
 import { Tabs, Tab, Box } from '@mui/material';
 import Pokemon from './Pokemon';
+import { PokemonProvider } from './PokemonContext';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -33,6 +34,8 @@ function App() {
   };
 
   return (
+    <PokemonProvider>
+
     <Box sx={{ width: '95%', height: '95vh' }}>
       <Tabs value={value} onChange={handleChange} >
         <Tab label="Pokemon List" />
@@ -45,7 +48,8 @@ function App() {
         <Pokemon />
       </TabPanel>
     </Box>
-  );
+    </PokemonProvider>
+ );
 }
 
 export default App;

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PokemonCard from './PokemonCard';
 import { Pokedex } from 'pokeapi-js-wrapper';
 import Button from '@mui/material/Button';
+import { usePokemon } from './PokemonContext';
 
 const options = {
   protocol: 'https',
@@ -12,23 +13,12 @@ const options = {
 const P = new Pokedex(options);
 
 const Pokemon = () => {
-  const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
+  const { pokemonUrls } = usePokemon();
   const [isAllShiny, setIsAllShiny] = useState(false);
   const [showOnlyFirstFive, setShowOnlyFirstFive] = useState(false); // New state variable
 
-  const fetchPokemon = (url: string) => {
-    P.resource(url)
-      .then((response: { results: { url: string; }[]; next: string; }) => {
-        const urls = response.results.map((pokemon: { url: string }) => pokemon.url);
-        setPokemonUrls(prevUrls => [...prevUrls, ...urls]);
-      });
-  };
-
-  useEffect(() => {
-    fetchPokemon('/api/v2/pokemon?limit=1010');
-  }, []);
-
-  if (pokemonUrls.length === 0) return <div>Loading...</div>;
+ 
+  if (!pokemonUrls || (pokemonUrls as string[]).length === 0) return <div>Loading...</div>;
 
   const chunkArray = (array: string[], chunkSize: number) => {
     const chunks = [];

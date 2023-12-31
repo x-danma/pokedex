@@ -1,30 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import PokemonCard from './PokemonCard';
-
+import { usePokemon } from './PokemonContext';
 type Pokemon = {
   name: string;
   url: string;
 };
 
 function PokemonList() {
-  const [pokemon, setPokemon] = useState<Pokemon[]>([]);
-
-  useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
-      .then(response => response.json())
-      .then(data => setPokemon(data.results));
-  }, []);
+  const { pokemonUrls } = usePokemon();
 
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableBody>
-          {chunkArray(pokemon, 5).map((chunk, chunkIndex) => (
+          {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (
             <TableRow key={chunkIndex}>
-              {chunk.map((poke: Pokemon) => (
-                <TableCell key={poke.name} style={{ width: '20%' }}>
-                  <PokemonCard url={poke.url} isShiny={false} /> {/* Render the PokemonCard component */}
+              {chunk.map((url: string) => (
+                <TableCell key={url} style={{ width: '20%' }}>
+                  <PokemonCard url={url} isShiny={false} /> {/* Render the PokemonCard component */}
                 </TableCell>
               ))}
             </TableRow>

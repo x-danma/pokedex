@@ -1,16 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PokemonCard from './PokemonCard';
-import { Pokedex } from 'pokeapi-js-wrapper';
-import Button from '@mui/material/Button';
 import { usePokemon } from './PokemonContext';
-
-const options = {
-  protocol: 'https',
-  versionPath: '/api/v2/',
-  cache: true,
-  timeout: 5 * 1000 // 5s
-}
-const P = new Pokedex(options);
 
 const Pokemon = () => {
   const { pokemonUrls } = usePokemon();
@@ -35,7 +25,7 @@ const Pokemon = () => {
   const toggleShowFirstFive = () => {
     setShowOnlyFirstFive(!showOnlyFirstFive);
   };
-  const displayedPokemonUrls = showOnlyFirstFive ? pokemonUrls.slice(0, 5) : pokemonUrls; // Display only first 5 if showOnlyFirstFive is true
+  const displayedPokemonUrls = Array.isArray(pokemonUrls) ? (showOnlyFirstFive ? pokemonUrls.slice(0, 5) : pokemonUrls) : [];
 
   return (
     <>

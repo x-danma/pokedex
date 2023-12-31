@@ -32,8 +32,8 @@ function App() {
   };
 
   return (
-    <>
-      <Tabs value={value} onChange={handleChange}>
+    <Box sx={{ width: '95%', height: '95vh' }}>
+      <Tabs value={value} onChange={handleChange} >
         <Tab label="Pokemon List" />
         <Tab label="Pokemon" />
       </Tabs>
@@ -43,7 +43,7 @@ function App() {
       <TabPanel value={value} index={1}>
         {/* <Pokemon /> */}
       </TabPanel>
-    </>
+    </Box>
   );
 }
 

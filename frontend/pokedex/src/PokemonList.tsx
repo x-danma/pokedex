@@ -1,11 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 import PokemonCard from './PokemonCard';
 import { usePokemon } from './PokemonContext';
-type Pokemon = {
-  name: string;
-  url: string;
-};
+
 
 function PokemonList() {
   const { pokemonUrls } = usePokemon();

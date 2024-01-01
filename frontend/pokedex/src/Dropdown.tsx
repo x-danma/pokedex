@@ -1,5 +1,11 @@
 import React from "react";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+} from "@mui/material";
 
 interface DropdownProps {
   generation: number;
@@ -10,14 +16,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
   generation,
   onGenerationChange,
 }) => {
-  const handleChange = (event: React.ChangeEvent<{ value: number }>) => {
-    const newGeneration = event.target.value as number;
+  const handleChange = (event: SelectChangeEvent<number>) => {
+    const newGeneration = Number(event.target.value);
     onGenerationChange(newGeneration);
   };
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="generation-select-label">Generation</InputLabel>
+      <InputLabel id="generation-select-label"></InputLabel>
       <Select
         labelId="generation-select-label"
         id="generation-select"
@@ -33,6 +39,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         <MenuItem value={7}>Generation 7</MenuItem>
         <MenuItem value={8}>Generation 8</MenuItem>
         <MenuItem value={9}>Generation 9</MenuItem>
+        <MenuItem value={-2}>All</MenuItem>
       </Select>
     </FormControl>
   );

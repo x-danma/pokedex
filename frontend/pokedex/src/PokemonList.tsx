@@ -1,6 +1,13 @@
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
-import PokemonCard from './PokemonCard';
-import { usePokemon } from './PokemonContext';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from "@mui/material";
+import PokemonCard from "./PokemonCard";
+import { usePokemon } from "./PokemonContext";
 
 function PokemonList() {
   const { pokemonUrls } = usePokemon();
@@ -12,7 +19,7 @@ function PokemonList() {
           {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (
             <TableRow key={chunkIndex}>
               {chunk.map((url: string) => (
-                <TableCell key={url} style={{ width: '20%' }}>
+                <TableCell key={url} style={{ width: "20%" }}>
                   <PokemonCard url={url} isShiny={false} />
                 </TableCell>
               ))}

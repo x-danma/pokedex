@@ -1,5 +1,4 @@
-// PokemonContext.tsx
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { Pokedex } from "pokeapi-js-wrapper";
 
 const options = {
@@ -12,7 +11,9 @@ const P = new Pokedex(options);
 
 interface PokemonContextValue {
   pokemonUrls: string[];
-  fetchPokemon: (url: string) => void;
+  fetchPokemon: (offset: number, limit: number) => void;
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
+  setLimit: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PokemonContext = createContext<PokemonContextValue | null>(null);
@@ -23,26 +24,30 @@ export const PokemonProvider = ({
   children: React.ReactNode;
 }) => {
   const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
+  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(151); // Generation 1 has 151 Pokemon
 
-  const fetchPokemon = (url: string) => {
-    P.resource(url).then(
+  const fetchPokemon = (offset: number, limit: number) => {
+    console.log("fetching new pokemon with offset", offset, limit);
+    P.resource(`/api/v2/pokemon?offset=${offset}&limit=${limit}`).then(
       (response: { results: { url: string }[]; next: string }) => {
         const urls = response.results.map(
           (pokemon: { url: string }) => pokemon.url
         );
-        setPokemonUrls((prevUrls) => [...prevUrls, ...urls]);
+        console.log("setting new urls:", urls);
+        setPokemonUrls(urls);
       }
     );
   };
 
   useEffect(() => {
-    if (pokemonUrls.length === 0) {
-      fetchPokemon("/api/v2/pokemon?limit=151");
-    }
-  });
+    fetchPokemon(offset, limit);
+  }, [limit, offset]);
 
   return (
-    <PokemonContext.Provider value={{ pokemonUrls, fetchPokemon }}>
+    <PokemonContext.Provider
+      value={{ pokemonUrls, fetchPokemon, setOffset, setLimit }}
+    >
       {children}
     </PokemonContext.Provider>
   );

@@ -28,6 +28,9 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        if (pokemon && pokemon.name.includes("-")) {
+          console.log(pokemon.number, pokemon.name);
+        }
         setPokemon({
           number: data.id,
           name: data.name,
@@ -125,7 +128,10 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
 export default PokemonCard;
 
 function formatPokemonName(name: string, number: number) {
-  const specialNumbers = [892, 902, 905, 876, 877];
+  const specialNumbers = [
+    386, 413, 487, 492, 550, 555, 641, 642, 645, 647, 648, 678, 681, 710, 711,
+    718, 741, 745, 746, 774, 778, 849, 875, 876, 877, 892, 902, 905,
+  ];
   if (specialNumbers.includes(number)) {
     name = name.split("-")[0];
   }

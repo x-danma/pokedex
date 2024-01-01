@@ -30,7 +30,7 @@ export const PokemonProvider = ({ children }: { children: React.ReactNode }) => 
 
   useEffect(() => {
     if (pokemonUrls.length === 0) {
-      fetchPokemon('/api/v2/pokemon?limit=100');
+      fetchPokemon('/api/v2/pokemon?limit=151');
     }
   }); 
 

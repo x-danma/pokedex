@@ -38,8 +38,8 @@ export function PokemonTabs() {
   return (
     <Box sx={{ width: "95%", height: "95vh" }}>
       <Tabs value={value} onChange={handleChange}>
-        <Tab label="Pokemon List" />
-        <Tab label="Pokemon Boxes" />
+        <Tab label="For Printing" />
+        <Tab label="Shiny Buttons" />
       </Tabs>
       <TabPanel value={value} index={0}>
         <PokemonList />

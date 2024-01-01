@@ -1,38 +1,45 @@
 // PokemonContext.tsx
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { Pokedex } from 'pokeapi-js-wrapper';
+import React, { createContext, useState, useEffect, useContext } from "react";
+import { Pokedex } from "pokeapi-js-wrapper";
 
 const options = {
-  protocol: 'https',
-  versionPath: '/api/v2/',
+  protocol: "https",
+  versionPath: "/api/v2/",
   cache: true,
-  timeout: 5 * 1000 // 5s
-}
+  timeout: 5 * 1000, // 5s
+};
 const P = new Pokedex(options);
 
 interface PokemonContextValue {
-    pokemonUrls: string[];
-    fetchPokemon: (url: string) => void;
+  pokemonUrls: string[];
+  fetchPokemon: (url: string) => void;
 }
 
 const PokemonContext = createContext<PokemonContextValue | null>(null);
 
-export const PokemonProvider = ({ children }: { children: React.ReactNode }) => {
+export const PokemonProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [pokemonUrls, setPokemonUrls] = useState<string[]>([]);
 
   const fetchPokemon = (url: string) => {
-    P.resource(url)
-      .then((response: { results: { url: string; }[]; next: string; }) => {
-        const urls = response.results.map((pokemon: { url: string }) => pokemon.url);
-        setPokemonUrls(prevUrls => [...prevUrls, ...urls]);
-      });
+    P.resource(url).then(
+      (response: { results: { url: string }[]; next: string }) => {
+        const urls = response.results.map(
+          (pokemon: { url: string }) => pokemon.url
+        );
+        setPokemonUrls((prevUrls) => [...prevUrls, ...urls]);
+      }
+    );
   };
 
   useEffect(() => {
     if (pokemonUrls.length === 0) {
-      fetchPokemon('/api/v2/pokemon?limit=151');
+      fetchPokemon("/api/v2/pokemon?limit=151");
     }
-  }); 
+  });
 
   return (
     <PokemonContext.Provider value={{ pokemonUrls, fetchPokemon }}>
@@ -44,7 +51,7 @@ export const PokemonProvider = ({ children }: { children: React.ReactNode }) => 
 export const usePokemon = () => {
   const context = useContext(PokemonContext);
   if (context === null) {
-    throw new Error('usePokemon must be used within a PokemonProvider');
+    throw new Error("usePokemon must be used within a PokemonProvider");
   }
   return context;
 };

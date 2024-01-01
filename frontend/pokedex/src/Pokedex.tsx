@@ -10,8 +10,8 @@ const Pokedex = () => {
 
   const handleGenerationChange = (newGeneration: number) => {
     setGeneration(newGeneration);
-    const newOffset = calculateOffset(newGeneration); // You'll need to implement this function
-    const newLimit = calculateLimit(newGeneration); // You'll need to implement this function
+    const newOffset = calculateOffset(newGeneration);
+    const newLimit = calculateLimit(newGeneration);
     console.log(newGeneration);
     setOffset(newOffset);
     setLimit(newLimit);
@@ -19,7 +19,6 @@ const Pokedex = () => {
 
   return (
     <div>
-      <h2>Generation {generation}</h2>
       <Dropdown
         generation={generation}
         onGenerationChange={handleGenerationChange}

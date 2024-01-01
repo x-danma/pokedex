@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getTypeIcon } from "./getTypeIcon";
 import "./pokemon-card.css";
+import FlareIcon from "@mui/icons-material/Flare";
 type PokemonCardProps = {
   url: string;
   isShiny: boolean;
@@ -51,14 +52,48 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
     <div className="card">
       {pokemon ? (
         <>
-          <b>
-            {pokemon.number}. {formatPokemonName(pokemon.name, pokemon.number)}
-          </b>
-          {showToggleButton && (
-            <button className="toggle-button" onClick={toggleShiny}>
-              Toggle Shiny
-            </button>
-          )}{" "}
+          {showToggleButton ? (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "80% 20%",
+                alignItems: "center",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <b>
+                  {pokemon.number}.{" "}
+                  {formatPokemonName(pokemon.name, pokemon.number)}
+                </b>
+              </div>
+              <button
+                className="toggle-button"
+                onClick={toggleShiny}
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  color: "blue",
+                  cursor: "pointer",
+                  justifySelf: "end",
+                }}
+              >
+                <FlareIcon />
+              </button>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <b>
+                {pokemon.number}.{" "}
+                {formatPokemonName(pokemon.name, pokemon.number)}
+              </b>
+            </div>
+          )}
           <a
             href={`https://www.pokemon.com/us/pokedex/${pokemon.name}`}
             target="_blank"

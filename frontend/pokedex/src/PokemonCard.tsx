@@ -33,7 +33,7 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
           image: data.sprites.front_default,
           shinyImage: data.sprites.front_shiny,
           type: data.types.map(
-            (typeInfo: { type: { name: any } }) => typeInfo.type.name
+            (typeInfo: { type: { name: string } }) => typeInfo.type.name
           ),
         });
       });

@@ -125,7 +125,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
 export default PokemonCard;
 
 function formatPokemonName(name: string, number: number) {
-  if (number === 892) {
+  const specialNumbers = [892, 902, 905, 876, 877];
+  if (specialNumbers.includes(number)) {
     name = name.split("-")[0];
   }
   return name.toUpperCase();

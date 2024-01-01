@@ -31,7 +31,10 @@ function TabPanel(props: TabPanelProps) {
 function App() {
   const [value, setValue] = useState(0);
 
-  const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (
+    _event: React.ChangeEvent<object>,
+    newValue: number
+  ) => {
     setValue(newValue);
   };
 

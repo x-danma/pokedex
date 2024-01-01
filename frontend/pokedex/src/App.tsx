@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 // import Pokemon from './Pokemon';
-import PokemonList from './PokemonList';
-import { Tabs, Tab, Box } from '@mui/material';
-import Pokemon from './Pokemon';
-import { PokemonProvider } from './PokemonContext';
+import PokemonList from "./PokemonList";
+import { Tabs, Tab, Box } from "@mui/material";
+import Pokemon from "./Pokemon";
+import { PokemonProvider } from "./PokemonContext";
 
-function TabPanel(props: any) {
+type TabPanelProps = {
+  value: number;
+  index: number;
+  children: React.ReactNode;
+};
+
+function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -17,11 +23,7 @@ function TabPanel(props: any) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   );
 }
@@ -35,21 +37,20 @@ function App() {
 
   return (
     <PokemonProvider>
-
-    <Box sx={{ width: '95%', height: '95vh' }}>
-      <Tabs value={value} onChange={handleChange} >
-        <Tab label="Pokemon List" />
-        <Tab label="Pokemon Boxes" />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <PokemonList />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Pokemon />
-      </TabPanel>
-    </Box>
+      <Box sx={{ width: "95%", height: "95vh" }}>
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Pokemon List" />
+          <Tab label="Pokemon Boxes" />
+        </Tabs>
+        <TabPanel value={value} index={0}>
+          <PokemonList />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <Pokemon />
+        </TabPanel>
+      </Box>
     </PokemonProvider>
- );
+  );
 }
 
 export default App;

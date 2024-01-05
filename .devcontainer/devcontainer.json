@@ -8,12 +8,7 @@
 		"codespaces": {
 			"repositories": {
 				"x-danma/pokedex-api": {
-					"permissions": {
-						"contents": "read",
-						"issues": "write",
-						"metadata": "read",
-						"pullRequests": "write"
-					}
+					"permissions": "write-all"
 				}
 			}
 		},

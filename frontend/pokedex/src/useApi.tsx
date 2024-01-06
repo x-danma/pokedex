@@ -5,6 +5,7 @@ const useApi = () => {
     HealthCheck: () => fetch(`${baseUrl}/healthy`),
     GetPokemon: (id: number) => fetch(`${baseUrl}/pokemon/${id}`),
     GetPokemonSlim: (id: number) => fetch(`${baseUrl}/pokemon/${id}/slim`),
+    GetAllPokemonSlim: () => fetch(`${baseUrl}/pokemon/slim`),
   };
 };
 

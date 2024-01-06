@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PokemonList from "./PokemonList";
 import { Tabs, Tab, Box } from "@mui/material";
 import Pokemon from "./Pokemon";
+import { PokemonDataGrid } from "./PokemonDataGrid";
 
 type TabPanelProps = {
   value: number;
@@ -38,13 +39,17 @@ export function PokemonTabs() {
   return (
     <Box sx={{ width: "95%", height: "95vh" }}>
       <Tabs value={value} onChange={handleChange}>
+        <Tab label="Data Grid" />
         <Tab label="For Printing" />
         <Tab label="Shiny Buttons" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <PokemonList />
+        <PokemonDataGrid />
       </TabPanel>
       <TabPanel value={value} index={1}>
+        <PokemonList />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         <Pokemon />
       </TabPanel>
     </Box>

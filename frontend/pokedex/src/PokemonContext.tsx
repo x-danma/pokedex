@@ -28,13 +28,11 @@ export const PokemonProvider = ({
   const [limit, setLimit] = useState(151); // Generation 1 has 151 Pokemon
 
   const fetchPokemon = (offset: number, limit: number) => {
-    console.log("fetching new pokemon with offset", offset, limit);
     P.resource(`/api/v2/pokemon?offset=${offset}&limit=${limit}`).then(
       (response: { results: { url: string }[]; next: string }) => {
         const urls = response.results.map(
           (pokemon: { url: string }) => pokemon.url
         );
-        console.log("setting new urls:", urls);
         setPokemonUrls(urls);
       }
     );

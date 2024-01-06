@@ -59,7 +59,7 @@ const Pokemon = () => {
                     <PokemonCard
                       url={url}
                       isShiny={isAllShiny}
-                      key={index}
+                      key={url + index}
                       showToggleButton
                     />
                   </>

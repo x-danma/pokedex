@@ -20,7 +20,7 @@ function PokemonList() {
             <TableRow key={chunkIndex}>
               {chunk.map((url: string) => (
                 <TableCell key={url} style={{ width: "20%" }}>
-                  <PokemonCard url={url} isShiny={false} />
+                  <PokemonCard url={url} isShiny={false} key={url} />
                 </TableCell>
               ))}
             </TableRow>

@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import PokemonCard from './PokemonCard';
-import { Pokedex } from 'pokeapi-js-wrapper';
-import Grid from '@material-ui/core/Grid';
+import React, { useState, useEffect } from "react";
+import PokemonCard from "./PokemonCard";
+import { Pokedex } from "pokeapi-js-wrapper";
+import Grid from "@material-ui/core/Grid";
 
 const options = {
-  protocol: 'https',
-  versionPath: '/api/v2/',
+  protocol: "https",
+  versionPath: "/api/v2/",
   cache: true,
-  timeout: 5 * 1000 // 5s
-}
+  timeout: 5 * 1000, // 5s
+};
 const P = new Pokedex(options);
 
 interface PokemonSubsetProps {
@@ -20,14 +20,16 @@ const PokemonSubset: React.FC<PokemonSubsetProps> = ({ pokemonNumbers }) => {
 
   useEffect(() => {
     pokemonNumbers.forEach((number) => {
-      P.getPokemonByName(number)
-        .then((pokemon: { species: { url: string; }; }) => {
-          setPokemonUrls(prevUrls => [...prevUrls, pokemon.species.url]);
-        });
+      P.getPokemonByName(number).then(
+        (pokemon: { species: { url: string } }) => {
+          setPokemonUrls((prevUrls) => [...prevUrls, pokemon.species.url]);
+        }
+      );
     });
   }, [pokemonNumbers]);
 
-  if (pokemonUrls.length === 0) return <React.Fragment>Loading...</React.Fragment>;
+  if (pokemonUrls.length === 0)
+    return <React.Fragment>Loading...</React.Fragment>;
 
   const chunkArray = (array: string[], chunkSize: number) => {
     const chunks = [];
@@ -37,13 +39,14 @@ const PokemonSubset: React.FC<PokemonSubsetProps> = ({ pokemonNumbers }) => {
     return chunks;
   };
 
- 
-
   return (
     <>
       <div className="pokemon-grid">
         {chunkArray(pokemonUrls, 5).map((chunk, chunkIndex) => (
-          <div className={chunkIndex % 5 === 4 ? "page-break" : ""} key={chunkIndex}>
+          <div
+            className={chunkIndex % 5 === 4 ? "page-break" : ""}
+            key={chunkIndex}
+          >
             {chunk.map((url, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <PokemonCard url={url} />
@@ -51,8 +54,9 @@ const PokemonSubset: React.FC<PokemonSubsetProps> = ({ pokemonNumbers }) => {
             ))}
           </div>
         ))}
-      </div></>
+      </div>
+    </>
   );
-}
+};
 
 export default PokemonSubset;

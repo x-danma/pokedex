@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable indent */
+import { useState, useEffect } from "react";
 import Tooltip from "@mui/material/Tooltip";
 import InfoIcon from "@mui/icons-material/Info";
+import useApi from "./useApi";
 
 const Header = () => {
   const [apiStatus, setApiStatus] = useState("Loading...");
+  const api = useApi();
 
   useEffect(() => {
-    fetch("http://localhost:5025/healthy")
+    api
+      .HealthCheck()
       .then((response) => {
         if (response.ok) {
           setApiStatus("Success");
@@ -21,7 +25,7 @@ const Header = () => {
           error
         );
       });
-  }, []);
+  }, [api]);
 
   return (
     <div style={{ display: "flex", justifyContent: "flex-end" }}>

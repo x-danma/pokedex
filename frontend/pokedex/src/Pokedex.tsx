@@ -3,6 +3,7 @@ import { useState } from "react";
 import Dropdown from "./Dropdown";
 import { usePokemon } from "./PokemonContext";
 import { PokemonTabs } from "./PokemonTabs";
+import Header from "./Header";
 
 const Pokedex = () => {
   const [generation, setGeneration] = useState<number>(1); // Default to Generation 1
@@ -19,6 +20,7 @@ const Pokedex = () => {
 
   return (
     <div>
+      <Header />
       <Dropdown
         generation={generation}
         onGenerationChange={handleGenerationChange}

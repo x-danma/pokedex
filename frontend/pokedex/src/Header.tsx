@@ -9,22 +9,13 @@ const Header = () => {
   const api = useApi();
 
   useEffect(() => {
-    api
-      .HealthCheck()
-      .then((response) => {
-        if (response.ok) {
-          setApiStatus("Success");
-        } else {
-          throw new Error("Server response was not ok.");
-        }
-      })
-      .catch((error) => {
+    api.HealthCheck().then((response) => {
+      if (response.ok) {
+        setApiStatus("Success");
+      } else {
         setApiStatus("Error");
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
-      });
+      }
+    });
   }, [api]);
 
   return (

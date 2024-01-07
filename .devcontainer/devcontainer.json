@@ -23,20 +23,21 @@
 	"postAttachCommand": {
 		"client": "cd frontend/pokedex/ && npm install && npm run dev",
 		"server": "cd submodules/pokedex-api/src/PokedexApi && dotnet watch"
+	},
+	"portsAttributes": {
+		"5173": {
+			"label": "Application",
+			"onAutoForward": "openPreview"
+		}
 	}
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "uname -a",
-
 	// Configure tool-specific properties.
 	// "customizations": {},
-
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }

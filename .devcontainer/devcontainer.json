@@ -21,7 +21,8 @@
 		}
 	},
 	"postAttachCommand": {
-		"client": "cd frontend/pokedex/ && npm install && npm run dev"
+		"client": "cd frontend/pokedex/ && npm install && npm run dev",
+		"server": "cd submodules/pokedex-api/src/PokedexApi && dotnet watch"
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
